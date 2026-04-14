@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Agência MOA — estratégia, design, tecnologia e produção audiovisual. Transformamos sua ideia em presença real. Do conceito à entrega, sem atalhos.">
+<meta property="og:title" content="agência MOA — Você tem uma ideia. A gente tem um plano.">
+<meta property="og:description" content="Estratégia, design, tecnologia e produção audiovisual. Do conceito à entrega, sem atalhos.">
+<title>agência MOA — Você tem uma ideia. A gente tem um plano.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --off-white: #f5f5f5;
+  --sand: #d9d8c7;
+  --orange: #ff691d;
+  --red: #d93636;
+  --brown: #421700;
+  --teal: #3ec6c3;
+  --dark: #1b1b1b;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--off-white); color: var(--dark); overflow-x: hidden; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--orange);
+  display: inline-block; margin-bottom: 20px;
+}
+.label--light { color: var(--sand); }
+.label--dark { color: var(--brown); }
+
+/* ══ NAV ══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+nav.scrolled {
+  padding: 16px 48px;
+  background: rgba(27,27,27,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+}
+.nav-logo { height: 48px; }
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 15px; font-weight: 500;
+  color: rgba(245,245,245,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--off-white); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: var(--off-white);
+  padding: 13px 28px; border-radius: 2px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 0 0 0 rgba(255,105,29,0);
+}
+.nav-cta:hover {
+  background: #ff7a35;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,105,29,0.4);
+}
+.hamburger {
+  display: none; flex-direction: column; gap: 6px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 26px; height: 2px;
+  background: var(--off-white); transition: all 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--dark); z-index: 99;
+  flex-direction: column; align-items: center; justify-content: center; gap: 44px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display); font-size: 36px; font-weight: 700;
+  color: var(--off-white); text-decoration: none; letter-spacing: -0.02em;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--orange); }
+.mobile-close {
+  position: absolute; top: 28px; right: 40px;
+  background: none; border: none; color: var(--off-white); font-size: 30px; cursor: pointer;
+}
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stripes container — right half */
+.hero-stripes-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Each stripe slides in from the right */
+.hstripe {
+  height: 80px;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(110%);
+  transition: none;
+}
+.hstripe.in {
+  animation: slideInStripe 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hstripe-1 { background: var(--teal);   animation-delay: 0.1s; }
+.hstripe-2 { background: var(--brown);  animation-delay: 0.22s; }
+.hstripe-3 { background: var(--red);    animation-delay: 0.34s; }
+.hstripe-4 { background: var(--orange); animation-delay: 0.46s; }
+.hstripe-5 { background: var(--sand);   animation-delay: 0.58s; }
+
+/* Left content */
+.hero-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 64px 80px calc(max((100vw - 1200px)/2, 0px) + 40px);
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 5.5vw, 88px);
+  font-weight: 700; line-height: 1.0;
+  letter-spacing: -0.03em; color: var(--off-white);
+  margin-bottom: 36px;
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-title span { color: var(--orange); }
+.hero-sub {
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 300; line-height: 1.75;
+  color: rgba(245,245,245,0.55);
+  max-width: 460px; margin-bottom: 52px;
+  opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 17px 34px; font-family: var(--font-body);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; border-radius: 2px; transition: all 0.25s;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--orange); color: var(--off-white); }
+.btn-primary:hover { background: #ff7a35; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,105,29,0.35); }
+.btn-outline { background: transparent; color: var(--off-white); border: 1.5px solid rgba(245,245,245,0.25); }
+.btn-outline:hover { border-color: rgba(245,245,245,0.6); transform: translateY(-2px); }
+
+/* scroll indicator */
+.hero-scroll {
+  position: absolute; bottom: 40px; left: calc(max((100vw - 1200px)/2, 0px) + 40px);
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0; animation: fadeUp 0.6s 1.3s forwards;
+}
+.hero-scroll span {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, rgba(255,105,29,0.8), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ══ NUMBERS ══ */
+.numbers {
+  background: var(--orange); padding: 32px 0;
+}
+.numbers-grid {
+  display: flex; justify-content: space-around; gap: 24px; flex-wrap: wrap;
+}
+.number-item { text-align: center; }
+.number-item strong {
+  display: block;
+  font-size: 88px; font-weight: 700;
+  color: var(--off-white); line-height: 1; letter-spacing: -0.04em;
+}
+.count-up {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 88px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+.number-item span {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245,245,245,0.7);
+  margin-top: 12px; display: block;
+}
+@media (max-width: 768px) {
+  .number-item strong, .count-up { font-size: 56px !important; }
+}
+
+/* ══ MANIFESTO ══ */
+.manifesto { padding: 130px 0; background: var(--off-white); }
+.manifesto-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.manifesto-visual { position: relative; }
+.manifesto-img { width: 100%; border-radius: 4px; }
+.manifesto-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.5vw, 52px); font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.1;
+  color: var(--dark); margin-bottom: 28px;
+}
+.manifesto-text p {
+  font-size: 16px; line-height: 1.85; color: #555; margin-bottom: 20px;
+}
+.manifesto-text p:last-of-type { margin-bottom: 36px; }
+.manifesto-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill {
+  padding: 9px 20px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.pill-dark { background: var(--dark); color: var(--off-white); }
+.pill-orange { background: var(--orange); color: var(--off-white); }
+.pill-teal { background: var(--teal); color: var(--dark); }
+.pill-red { background: var(--red); color: var(--off-white); }
+
+/* ══ SERVICES ══ */
+.services { padding: 130px 0; background: var(--dark); }
+.services-header { margin-bottom: 72px; }
+.services-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 68px); font-weight: 700;
+  letter-spacing: -0.03em; color: var(--off-white); line-height: 1.0;
+}
+.services-header h2 span { color: var(--orange); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.service-card {
+  background: rgba(245,245,245,0.04);
+  border: 1px solid rgba(245,245,245,0.07);
+  padding: 44px 38px; transition: all 0.35s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+}
+.service-card:hover { background: rgba(245,245,245,0.08); transform: translateY(-5px); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-number {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; color: var(--orange); margin-bottom: 20px; display: block;
+}
+.service-card h3 {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--off-white); margin-bottom: 14px; letter-spacing: -0.01em;
+}
+.service-card p {
+  font-size: 14px; line-height: 1.75; color: rgba(245,245,245,0.5); margin-bottom: 28px;
+}
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(245,245,245,0.3); border: 1px solid rgba(245,245,245,0.1);
+  padding: 5px 12px; border-radius: 100px;
+}
+.service-card.wide {
+  grid-column: span 3;
+}
+.service-card.wide .service-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+}
+
+/* ══ CLIENTS ══ */
+.clients { padding: 110px 0; background: var(--sand); }
+.clients-header { text-align: center; margin-bottom: 64px; }
+.clients-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--dark); margin-bottom: 16px;
+}
+.clients-header p { font-size: 15px; color: #666; }
+.clients-marquee { overflow: hidden; position: relative; margin-bottom: 0; }
+.clients-marquee::before, .clients-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+}
+.clients-marquee::before { left: 0; background: linear-gradient(to right, var(--sand), transparent); }
+.clients-marquee::after { right: 0; background: linear-gradient(to left, var(--sand), transparent); }
+.clients-track {
+  display: flex; animation: marquee 28s linear infinite; width: max-content;
+}
+.clients-track2 { animation-direction: reverse; animation-duration: 35s; }
+.client-item {
+  padding: 18px 44px; font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); opacity: 0.35;
+  white-space: nowrap; border-right: 1px solid rgba(27,27,27,0.1); transition: opacity 0.2s;
+}
+.client-item:hover { opacity: 0.9; }
+
+/* ══ TEAM ══ */
+.team { padding: 130px 0; background: var(--off-white); }
+.team-header { margin-bottom: 72px; }
+.team-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--dark); line-height: 1.05;
+}
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+
+/* Flashcard */
+.team-card {
+  aspect-ratio: 1/1;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.team-card-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform-style: preserve-3d;
+  border-radius: 4px;
+}
+.team-card.flipped .team-card-inner {
+  transform: rotateY(180deg);
+}
+.team-card-front,
+.team-card-back {
+  position: absolute; inset: 0;
+  border-radius: 4px; overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.team-card-front img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+/* hint bar on front */
+.team-card-hint {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(27,27,27,0.85) 0%, transparent 100%);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.team-card-hint span {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245,245,245,0.7);
+}
+.team-card-hint .hint-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid rgba(245,245,245,0.4);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--off-white); font-size: 13px; transition: all 0.2s;
+}
+.team-card:hover .hint-icon {
+  background: var(--orange); border-color: var(--orange);
+}
+
+/* back of card */
+.team-card-back {
+  transform: rotateY(180deg);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 32px 28px;
+}
+.team-card-back-teal  { background: var(--teal); }
+.team-card-back-red   { background: var(--red); }
+.team-card-back-brown { background: var(--brown); }
+
+.team-card-back-name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--off-white); letter-spacing: -0.01em; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.team-card-back-role {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(245,245,245,0.65);
+  margin-bottom: 20px;
+}
+.team-card-back-bio {
+  font-size: 14px; line-height: 1.7; color: rgba(245,245,245,0.85);
+  flex: 1; display: flex; align-items: flex-start; padding-top: 20px;
+  border-top: 1px solid rgba(245,245,245,0.2);
+}
+.team-card-back-close {
+  margin-top: 24px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(245,245,245,0.5);
+  display: flex; align-items: center; gap: 8px;
+}
+.team-card-back-close::before {
+  content: '↩'; font-size: 14px;
+}
+
+/* team footer text */
+.team-footer {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 48px 0 0;
+}
+.team-footer-line {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.team-footer-line span {
+  display: block;
+  height: 5px;
+  border-radius: 2px;
+}
+.team-footer-line span:nth-child(1) { width: 48px; background: var(--teal); }
+.team-footer-line span:nth-child(2) { width: 36px; background: var(--brown); }
+.team-footer-line span:nth-child(3) { width: 56px; background: var(--red); }
+.team-footer-line span:nth-child(4) { width: 28px; background: var(--orange); }
+.team-footer-line span:nth-child(5) { width: 44px; background: var(--sand); filter: brightness(0.7); }
+.team-footer p {
+  font-size: 18px; line-height: 1.75; color: var(--dark);
+  font-weight: 400; max-width: 680px;
+}
+
+/* ══ CTA FINAL ══ */
+.cta-final {
+  padding: 160px 0; background: var(--brown);
+  position: relative; overflow: hidden; text-align: center;
+}
+
+.cta-final-inner { position: relative; z-index: 2; }
+.cta-final h2 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 84px); font-weight: 700;
+  letter-spacing: -0.03em; color: var(--off-white); line-height: 1.0; margin-bottom: 24px;
+}
+.cta-final h2 span { color: var(--orange); }
+.cta-final p {
+  font-size: 17px; line-height: 1.75; color: var(--sand);
+  max-width: 500px; margin: 0 auto 52px;
+}
+
+/* ══ FOOTER ══ */
+footer { background: var(--dark); padding: 64px 0 32px; }
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 48px; padding-bottom: 52px;
+  border-bottom: 1px solid rgba(245,245,245,0.07); flex-wrap: wrap;
+}
+.footer-logo { height: 64px; filter: invert(1); }
+.footer-tagline { font-size: 13px; color: rgba(245,245,245,0.35); margin-top: 14px; font-style: italic; }
+.footer-links h4 {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;
+}
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+  font-size: 13px; color: rgba(245,245,245,0.5); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--off-white); }
+.footer-bottom {
+  padding-top: 32px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 12px; color: rgba(245,245,245,0.25); }
+.footer-social { display: flex; gap: 24px; }
+.footer-social a {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(245,245,245,0.35); text-decoration: none; transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--orange); }
+
+/* ══ WHATSAPP FLOAT ══ */
+.whatsapp-float {
+  position: fixed; bottom: 32px; right: 32px; z-index: 50;
+  width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  transition: transform 0.25s, box-shadow 0.25s;
+  opacity: 0; animation: fadeUp 0.8s 1.6s forwards;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 32px rgba(37,211,102,0.5);
+}
+.whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ══ ANIMATIONS ══ */
+@keyframes slideInStripe {
+  from { opacity: 0; transform: translateX(110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.3); }
+}
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-stripes-wrap { height: 220px; }
+  .hstripe { height: 44px; }
+  .hero-content { padding: 100px 24px 60px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+  .manifesto-inner { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card.wide { grid-column: span 2; }
+  .service-card.wide .service-inner { grid-template-columns: 1fr; gap: 0; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.wide { grid-column: span 1; }
+  .team-grid { grid-template-columns: 1fr; }
+  nav { padding: 20px 24px; }
+  .container { padding: 0 24px; }
+}
+
+  /* ── CURSOR ── */
+  * { cursor: none !important; }
+  .cursor-dot {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9998;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid rgba(255,105,29,0.5);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+  }
+  .cursor-dot.hovered { width: 12px; height: 12px; }
+  .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--orange); }
+  .cursor-dot.clicked { transform: translate(-50%, -50%) scale(0.5); }
+  @media (hover: none) {
+    * { cursor: auto !important; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+
+  /* ── TEXT REVEAL ── */
+  .reveal-text {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+  }
+  .reveal-text-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-text.visible .reveal-text-inner {
+    transform: translateY(0);
+  }
+
+  /* ── PARALLAX ── */
+  .hero-stripes-wrap { will-change: transform; }
+
+  /* ── COUNTER ── */
+  .count-up { display: inline-block; }
+
+  /* ── SERVICE REVEAL ── */
+  .service-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, background 0.35s, box-shadow 0.35s;
+  }
+  .service-card.card-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+/* ══ MOA LABS ══ */
+.labs {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+.labs-top-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 0 80px;
+}
+.labs-logo {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+}
+.labs-intro {}
+.labs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: var(--dark);
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.labs-badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--dark);
+  animation: labsPulse 2s ease-in-out infinite;
+}
+.labs-intro p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(245,245,245,0.55);
+  max-width: 480px;
+}
+.labs-intro p strong {
+  color: var(--off-white);
+  font-weight: 600;
+}
+
+/* Bottom grid */
+.labs-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(245,245,245,0.08);
+}
+.labs-item {
+  padding: 52px 44px;
+  border-right: 1px solid rgba(245,245,245,0.08);
+  transition: background 0.3s;
+  position: relative;
+  background: var(--dark);
+}
+.labs-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.labs-item:hover::after { transform: scaleX(1); }
+.labs-item:last-child { border-right: none; }
+.labs-item:hover { background: rgba(245,245,245,0.04); }
+.labs-item-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  margin-bottom: 20px;
+  display: block;
+}
+.labs-item h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--off-white);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.labs-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(245,245,245,0.5);
+}
+
+@keyframes labsPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@media (max-width: 960px) {
+  .labs-top-inner { grid-template-columns: 1fr; gap: 40px; padding: 72px 0 56px; }
+  .labs-bottom { grid-template-columns: 1fr; }
+  .labs-item { border-right: none; border-bottom: 1px solid rgba(27,27,27,0.12); }
+}
+
+</style>
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agenciamoa.com.br/">
+<meta property="og:image" content="https://agenciamoa.com.br/assets/img/hero-manifesto.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="agência MOA — Você tem uma ideia. A gente tem um plano.">
+<meta name="twitter:description" content="Estratégia, design, tecnologia e produção audiovisual. Do conceito à entrega, sem atalhos.">
+<meta name="twitter:image" content="https://agenciamoa.com.br/assets/img/hero-manifesto.webp">
+<link rel="canonical" href="https://agenciamoa.com.br/">
+<link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "agência MOA",
+  "description": "Agência multidisciplinar que conecta estratégia, design, tecnologia e produção audiovisual. Do conceito à entrega, sem atalhos.",
+  "url": "https://agenciamoa.com.br",
+  "logo": "https://agenciamoa.com.br/assets/img/logo.svg",
+  "image": "https://agenciamoa.com.br/assets/img/hero-manifesto.webp",
+  "sameAs": [],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BR"
+  },
+  "offers": [
+    {"@type": "Offer", "name": "Estratégia de Marca"},
+    {"@type": "Offer", "name": "Design e Identidade Visual"},
+    {"@type": "Offer", "name": "Desenvolvimento Web"},
+    {"@type": "Offer", "name": "Produção Audiovisual"}
+  ]
+}
+</script>
+<script defer src="https://analytics.agenciamoa.com.br/script.js" data-website-id="888c6f30-da0b-456c-b0bf-86c4226b8b61"></script>
+<link rel="preload" as="image" href="assets/img/hero-manifesto.webp">
+</head>
+<body>
+
+<!-- NAV -->
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <img style="filter: brightness(0) invert(1);" src="assets/img/logo.svg" alt="agência MOA" class="nav-logo" alt="agência MOA" class="nav-logo">
+  <ul class="nav-links">
+    <li><a href="#manifesto">Quem Somos</a></li>
+    <li><a href="#services">Serviços</a></li>
+    <li><a href="#clients">Clientes</a></li>
+    <li><a href="#team">Time</a></li>
+  </ul>
+  <a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="nav-cta">
+    Fala com a gente
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#manifesto" onclick="toggleMenu()">Quem Somos</a>
+  <a href="#services" onclick="toggleMenu()">Serviços</a>
+  <a href="#clients" onclick="toggleMenu()">Clientes</a>
+  <a href="#team" onclick="toggleMenu()">Time</a>
+  <a href="#labs" onclick="toggleMenu()">Labs</a>
+  <a href="https://wa.me/5588988575422" onclick="toggleMenu()">Contato</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- LEFT: copy -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">agência MOA</p>
+    <h1 class="hero-title">
+      Você tem<br>
+      uma <span>ideia.</span><br>
+      A gente tem<br>
+      um plano.
+    </h1>
+    <p class="hero-sub">
+      Conectamos estratégia, design, tecnologia e produção audiovisual para transformar marcas em presença real.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="btn btn-primary">
+        Fala com a gente
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#services" class="btn btn-outline">Ver serviços</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: animated brand stripes -->
+  <div class="hero-stripes-wrap">
+    <div class="hstripe hstripe-1"></div>
+    <div class="hstripe hstripe-2"></div>
+    <div class="hstripe hstripe-3"></div>
+    <div class="hstripe hstripe-4"></div>
+    <div class="hstripe hstripe-5"></div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="number-item"><strong><span class="count-up" data-target="80" data-suffix="+">0</span></strong><span>empresas atendidas</span></div>
+      <div class="number-item"><strong><span class="count-up" data-target="6" data-suffix="+">0</span></strong><span>anos de experiência</span></div>
+      <div class="number-item"><strong><span class="count-up" data-target="50" data-suffix="+">0</span></strong><span>produções audiovisuais</span></div>
+      <div class="number-item"><strong><span class="count-up" data-target="7" data-suffix="+">0</span></strong><span>serviços especializados</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="container">
+    <div class="manifesto-inner">
+      <div class="manifesto-visual reveal">
+        <img src="assets/img/hero-manifesto.webp" alt="Time agência MOA" class="manifesto-img" style="border-radius:4px; object-fit:cover; aspect-ratio:1/1;">
+      </div>
+      <div class="manifesto-text reveal">
+        <span class="label">quem somos</span>
+        <h2><span class="reveal-text"><span class="reveal-text-inner">Criatividade tem método aqui dentro.</span></span></h2>
+        <p>A MOA é uma agência multidisciplinar. Conectamos estratégia, design, tecnologia e produção audiovisual para resolver problemas reais de negócio.</p>
+        <p>Aqui, cada projeto é tratado com cuidado: pensado antes de executar, revisado antes de entregar. Não perseguimos velocidade vazia — perseguimos qualidade que permanece.</p>
+        <p>Somos diligentes. E somos responsáveis pelo que entregamos.</p>
+        <div class="manifesto-pills">
+          <span class="pill pill-dark">Estratégia</span>
+          <span class="pill pill-orange">Design</span>
+          <span class="pill pill-teal">Tecnologia</span>
+          <span class="pill pill-red">Audiovisual</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="label label--light">o que fazemos</span>
+      <h2><span class="reveal-text"><span class="reveal-text-inner">Do conceito à entrega. <span>Sem atalhos.</span></span></span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-number">01</span>
+        <h3>Marketing Digital</h3>
+        <p>Estratégia, conteúdo e presença digital que geram resultado. Não fazemos barulho — fazemos posicionamento.</p>
+        <div class="service-tags">
+          <span class="service-tag">Gestão de Redes</span>
+          <span class="service-tag">Conteúdo</span>
+          <span class="service-tag">Email Marketing</span>
+          <span class="service-tag">Consultoria</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">02</span>
+        <h3>Gestão de Tráfego</h3>
+        <p>Campanhas pagas que convertem. Google, Meta e além — cada real investido com estratégia e análise de dados.</p>
+        <div class="service-tags">
+          <span class="service-tag">Google Ads</span>
+          <span class="service-tag">Meta Ads</span>
+          <span class="service-tag">Relatórios</span>
+          <span class="service-tag">Otimização</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">03</span>
+        <h3>Fotografia</h3>
+        <p>Imagens que vendem sem precisar gritar. Cada foto com intenção e cuidado na execução.</p>
+        <div class="service-tags">
+          <span class="service-tag">Gastronomia</span>
+          <span class="service-tag">Produto</span>
+          <span class="service-tag">Corporativa</span>
+          <span class="service-tag">Eventos</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">04</span>
+        <h3>Produção de Vídeo</h3>
+        <p>Do roteiro à edição, com método e cuidado em cada frame. Histórias visuais que ficam na memória.</p>
+        <div class="service-tags">
+          <span class="service-tag">Institucional</span>
+          <span class="service-tag">Promocional</span>
+          <span class="service-tag">Eventos</span>
+          <span class="service-tag">Conteúdo</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">05</span>
+        <h3>Identidade Visual</h3>
+        <p>Marca que comunica antes de qualquer palavra. Do logo ao manual, construímos identidades que ficam.</p>
+        <div class="service-tags">
+          <span class="service-tag">Logo</span>
+          <span class="service-tag">Paleta</span>
+          <span class="service-tag">Tipografia</span>
+          <span class="service-tag">Manual de Marca</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-number">06</span>
+        <h3>Desenvolvimento Web</h3>
+        <p>Sites rápidos, responsivos e construídos para converter. Tecnologia a serviço do seu negócio.</p>
+        <div class="service-tags">
+          <span class="service-tag">Institucional</span>
+          <span class="service-tag">Landing Pages</span>
+          <span class="service-tag">One Page</span>
+          <span class="service-tag">Manutenção</span>
+        </div>
+      </div>
+      <div class="service-card wide reveal">
+        <div class="service-inner">
+          <div>
+            <span class="service-number">07</span>
+            <h3>Soluções com IA</h3>
+            <p>Automatizamos processos, criamos fluxos inteligentes e integramos IA no seu negócio de forma prática e estratégica. O futuro não espera.</p>
+          </div>
+          <div class="service-tags" style="align-content: start;">
+            <span class="service-tag">Automação</span>
+            <span class="service-tag">Chatbots</span>
+            <span class="service-tag">Integração de Ferramentas</span>
+            <span class="service-tag">Consultoria em IA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="clients" id="clients">
+  <div class="container">
+    <div class="clients-header reveal">
+      <span class="label label--dark">quem confia na gente</span>
+      <h2><span class="reveal-text"><span class="reveal-text-inner">Marcas que escolheram fazer diferente.</span></span></h2>
+      <p>Mais de 80 empresas atendidas. Cada uma com uma história diferente — e uma solução sob medida.</p>
+    </div>
+  </div>
+  <div class="clients-marquee">
+    <div class="clients-track">
+      <span class="client-item">Afrodite</span>
+      <span class="client-item">Ferreiro</span>
+      <span class="client-item">Seu Zeca</span>
+      <span class="client-item">Cerâmica Livramento</span>
+      <span class="client-item">Vito Fogo</span>
+      <span class="client-item">Vito Café</span>
+      <span class="client-item">Vichy</span>
+      <span class="client-item">Cordeiro Premium</span>
+      <span class="client-item">Endorim</span>
+      <span class="client-item">Refrigás Refrigeração</span>
+      <span class="client-item">Metropolitan Hotel</span>
+      <span class="client-item">Ponto da Esfiha</span>
+      <span class="client-item">Dom Pneus</span>
+      <span class="client-item">Alveoli</span>
+      <span class="client-item">Fandom</span>
+      <!-- duplicate for seamless loop -->
+      <span class="client-item">Afrodite</span>
+      <span class="client-item">Ferreiro</span>
+      <span class="client-item">Seu Zeca</span>
+      <span class="client-item">Cerâmica Livramento</span>
+      <span class="client-item">Vito Fogo</span>
+      <span class="client-item">Vito Café</span>
+      <span class="client-item">Vichy</span>
+      <span class="client-item">Cordeiro Premium</span>
+      <span class="client-item">Endorim</span>
+      <span class="client-item">Refrigás Refrigeração</span>
+      <span class="client-item">Metropolitan Hotel</span>
+      <span class="client-item">Ponto da Esfiha</span>
+      <span class="client-item">Dom Pneus</span>
+      <span class="client-item">Alveoli</span>
+      <span class="client-item">Fandom</span>
+    </div>
+  </div>
+  <div class="clients-marquee" style="margin-top:0">
+    <div class="clients-track clients-track2">
+      <span class="client-item">Seu Zé Restobar</span>
+      <span class="client-item">Doceria da Loris</span>
+      <span class="client-item">Bruhaus</span>
+      <span class="client-item">Vivaz Turismo</span>
+      <span class="client-item">Pousada Cerâmica Serra da Capivara</span>
+      <span class="client-item">Burguerama</span>
+      <span class="client-item">Confraria Uchôa</span>
+      <span class="client-item">Hotel Uchôa</span>
+      <span class="client-item">Doce Servir</span>
+      <span class="client-item">Nordeste Bebidas</span>
+      <span class="client-item">Free Sorveteria</span>
+      <span class="client-item">Bife Ponto</span>
+      <span class="client-item">Tem Conveniência</span>
+      <span class="client-item">Brownie Bentes</span>
+      <span class="client-item">Blue Moon Digital</span>
+      <!-- duplicate for seamless loop -->
+      <span class="client-item">Seu Zé Restobar</span>
+      <span class="client-item">Doceria da Loris</span>
+      <span class="client-item">Bruhaus</span>
+      <span class="client-item">Vivaz Turismo</span>
+      <span class="client-item">Pousada Cerâmica Serra da Capivara</span>
+      <span class="client-item">Burguerama</span>
+      <span class="client-item">Confraria Uchôa</span>
+      <span class="client-item">Hotel Uchôa</span>
+      <span class="client-item">Doce Servir</span>
+      <span class="client-item">Nordeste Bebidas</span>
+      <span class="client-item">Free Sorveteria</span>
+      <span class="client-item">Bife Ponto</span>
+      <span class="client-item">Tem Conveniência</span>
+      <span class="client-item">Brownie Bentes</span>
+      <span class="client-item">Blue Moon Digital</span>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="team-header reveal">
+      <span class="label">as pessoas por trás</span>
+      <h2><span class="reveal-text"><span class="reveal-text-inner">Um time completo. Uma entrega só.</span></span></h2>
+    </div>
+    <div class="team-grid">
+
+      <!-- Alessandra -->
+      <div class="team-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="team-card-inner">
+          <div class="team-card-front">
+            <img src="assets/img/team-membro-1.webp" loading="lazy" alt="Alessandra Coimbra">
+            <div class="team-card-hint">
+              <span>Conheça</span>
+              <div class="hint-icon">→</div>
+            </div>
+          </div>
+          <div class="team-card-back team-card-back-teal">
+            <div class="team-card-back-bio">Posicionamento com autoridade. Conteúdo que conecta, diferencia e gera valor — sem enrolação.</div>
+            <div class="team-card-back-name">Alessandra Coimbra</div>
+            <div class="team-card-back-role">Estrategista Digital & Consultora</div>
+            <div class="team-card-back-close">Voltar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eduardo -->
+      <div class="team-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="team-card-inner">
+          <div class="team-card-front">
+            <img src="assets/img/team-membro-2.webp" loading="lazy" alt="Eduardo Campos">
+            <div class="team-card-hint">
+              <span>Conheça</span>
+              <div class="hint-icon">→</div>
+            </div>
+          </div>
+          <div class="team-card-back team-card-back-red">
+            <div class="team-card-back-bio">+6 anos em produção audiovisual. Da câmera ao corte final, cada projeto tem método, narrativa e intenção.</div>
+            <div class="team-card-back-name">Eduardo Campos</div>
+            <div class="team-card-back-role">Consultor · Produtor · Fotógrafo</div>
+            <div class="team-card-back-close">Voltar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wagner -->
+      <div class="team-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="team-card-inner">
+          <div class="team-card-front">
+            <img src="assets/img/team-membro-3.webp" loading="lazy" alt="Wagner Campos">
+            <div class="team-card-hint">
+              <span>Conheça</span>
+              <div class="hint-icon">→</div>
+            </div>
+          </div>
+          <div class="team-card-back team-card-back-brown">
+            <div class="team-card-back-bio">Soluções digitais para quem quer fazer diferente. Sites, estratégia e tecnologia a serviço de resultados reais.</div>
+            <div class="team-card-back-name">Wagner Campos</div>
+            <div class="team-card-back-role">Desenvolvedor + Tech Manager</div>
+            <div class="team-card-back-close">Voltar</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Team footer: just text -->
+    <div class="team-footer reveal">
+      <div class="team-footer-line">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p>Além desses três, tem um time completo de designers, social medias, videomakers e fotógrafos. Tudo para entregar completo, do início ao fim.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOA LABS -->
+<section class="labs" id="labs">
+  <div class="container">
+    <div class="labs-top-inner reveal">
+      <img src="assets/img/labs-hero.webp" loading="lazy" alt="MOA Labs" class="labs-logo">
+      <div class="labs-intro">
+        <div class="labs-badge">
+          <span class="labs-badge-dot"></span>
+          laboratório criativo
+        </div>
+        <p>Um espaço de <strong>pesquisa, teste e construção</strong> onde o conhecimento é compartilhado, a tecnologia é aplicada com propósito e a inovação vira algo utilizável. Aqui, criatividade encontra tecnologia. Treinamento encontra prática.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="labs-bottom">
+    <div class="labs-item reveal">
+      <span class="labs-item-num">01</span>
+      <h3>Inovação nasce do fazer</h3>
+      <p>Criamos, testamos, erramos rápido, ajustamos e evoluímos — sempre com o mesmo rigor artesanal que define a MOA.</p>
+    </div>
+    <div class="labs-item reveal">
+      <span class="labs-item-num">02</span>
+      <h3>Tecnologia com propósito</h3>
+      <p>Desenvolvemos pessoas, produtos digitais e sistemas que resolvem problemas reais. Mais do que tendências — construímos ferramentas próprias.</p>
+    </div>
+    <div class="labs-item reveal">
+      <span class="labs-item-num">03</span>
+      <h3>Conhecimento compartilhado</h3>
+      <p>A MOA Labs existe para desenvolver quem constrói junto. O conhecimento não fica guardado — ele circula, evolui e vira método.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contact">
+  <div class="container">
+    <div class="cta-final-inner">
+      <span class="label label--light">vamos conversar</span>
+      <h2><span class="reveal-text"><span class="reveal-text-inner">Pronto para sair do <span>lugar?</span></span></span></h2>
+      <p>Conta pra gente o que você tem em mente. A gente transforma em plano — e plano em resultado.</p>
+      <a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="btn btn-primary" style="margin: 0 auto; font-size: 15px; padding: 18px 44px;">
+        Fala com a MOA no WhatsApp
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <img src="assets/img/logo.svg" alt="agência MOA" alt="agência MOA" class="footer-logo">
+        <p class="footer-tagline">Você tem uma ideia.<br>A gente tem um plano.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#manifesto">Quem Somos</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#team">Time</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#services">Marketing Digital</a></li>
+          <li><a href="#services">Gestão de Tráfego</a></li>
+          <li><a href="#services">Fotografia & Vídeo</a></li>
+          <li><a href="#services">Desenvolvimento Web</a></li>
+          <li><a href="#services">Soluções com IA</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5588988575422">WhatsApp</a></li>
+          <li><a href="https://instagram.com/agenciamoa" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 agência MOA. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/agenciamoa" target="_blank">Instagram</a>
+        <a href="https://wa.me/5588988575422">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // ── CURSOR ──
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
+  let mouseX = 0, mouseY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  // Ring follows with smooth lag
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Hover effect on interactive elements
+  document.querySelectorAll('a, button, .team-card, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('hovered'); ring.classList.add('hovered'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('hovered'); ring.classList.remove('hovered'); });
+  });
+  document.addEventListener('mousedown', () => dot.classList.add('clicked'));
+  document.addEventListener('mouseup',   () => dot.classList.remove('clicked'));
+
+  // ── COUNTER ──
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-up').forEach(el => counterObserver.observe(el));
+
+  // ── TEXT REVEAL ──
+  const textRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        // stagger each line slightly
+        const lines = e.target.querySelectorAll('.reveal-text');
+        lines.forEach((line, idx) => {
+          setTimeout(() => line.classList.add('visible'), idx * 120);
+        });
+        textRevealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('h2').forEach(el => textRevealObserver.observe(el));
+
+  // ── SERVICE CARDS STAGGER ──
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const cards = document.querySelectorAll('.service-card:not(.card-visible)');
+        cards.forEach((card, i) => {
+          setTimeout(() => card.classList.add('card-visible'), i * 80);
+        });
+        cardObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  const servicesSection = document.getElementById('services');
+  if (servicesSection) cardObserver.observe(servicesSection);
+
+  // ── PARALLAX STRIPES ──
+  const stripesWrap = document.querySelector('.hero-stripes-wrap');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (stripesWrap && scrollY < window.innerHeight * 1.5) {
+      const stripes = stripesWrap.querySelectorAll('.hstripe');
+      stripes.forEach((s, i) => {
+        const speed = 0.04 + i * 0.02;
+        s.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    }
+  }, { passive: true });
+
+
+  // NAV scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Stripe animation on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.hstripe').forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), i * 120);
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
