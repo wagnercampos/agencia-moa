@@ -49,6 +49,16 @@ MOA.labs é o braço de tecnologia da Agência MOA. Desenvolve produtos digitais
 
 Além de atender empresas de qualquer segmento, a MOA tem frentes específicas para saúde (consultórios e clínicas, dentro das regras do CFM), gastronomia (restaurantes, bares, cafés e cervejarias) e hotelaria (hotéis e pousadas).
 
+
+## Blog
+
+Artigos práticos da MOA sobre Google, tráfego pago e presença digital para pequenas empresas. Listagem em https://agenciamoa.com.br/blog/.
+
+- [negocio nao aparece no google maps](https://agenciamoa.com.br/blog/negocio-nao-aparece-no-google-maps.html): Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.
+- [quanto custa google ads](https://agenciamoa.com.br/blog/quanto-custa-google-ads.html): Quanto custa anunciar no Google Ads? Entenda as duas partes do custo, quanto investir para começar e o que faz o preço subir ou descer. Guia 2026.
+- [vale a pena agencia de trafego](https://agenciamoa.com.br/blog/vale-a-pena-agencia-de-trafego.html): Vale a pena contratar agência de tráfego? Quando vale, quando não vale, como escolher e as bandeiras vermelhas para decidir antes de gastar.
+- [como otimizar google meu negocio](https://agenciamoa.com.br/blog/como-otimizar-google-meu-negocio.html): Como otimizar o Google Meu Negócio (Perfil da Empresa) em 2026: passo a passo completo de verificação, categoria, fotos, avaliações e mais.
+
 ## Contato
 
 Atendimento pelo WhatsApp +55 88 98857-5422 ou pelo site https://agenciamoa.com.br. A primeira conversa é um diagnóstico sem compromisso.

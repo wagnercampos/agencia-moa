@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.">
+<meta property="og:title" content="Por que meu negócio não aparece no Google Maps (e como resolver) | Blog Agência MOA">
+<meta property="og:description" content="Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://agenciamoa.com.br/blog/negocio-nao-aparece-no-google-maps.html">
+<title>Por que meu negócio não aparece no Google Maps (e como resolver) | Blog Agência MOA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+:root {
+  --off-white: #f5f5f5;
+  --sand: #d9d8c7;
+  --orange: #ff691d;
+  --red: #d93636;
+  --brown: #421700;
+  --teal: #3ec6c3;
+  --dark: #1b1b1b;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--off-white); color: var(--dark); overflow-x: hidden; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+.label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--orange);
+  display: inline-block; margin-bottom: 20px;
+}
+.label--light { color: var(--sand); }
+.label--dark { color: var(--brown); }
+
+/* ══ NAV ══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 28px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+nav.scrolled {
+  padding: 16px 48px;
+  background: rgba(27,27,27,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+}
+.nav-logo { height: 48px; }
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 15px; font-weight: 500;
+  color: rgba(245,245,245,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--off-white); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: var(--off-white);
+  padding: 13px 28px; border-radius: 2px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 0 0 0 rgba(255,105,29,0);
+}
+.nav-cta:hover {
+  background: #ff7a35;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,105,29,0.4);
+}
+.hamburger {
+  display: none; flex-direction: column; gap: 6px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 26px; height: 2px;
+  background: var(--off-white); transition: all 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--dark); z-index: 99;
+  flex-direction: column; align-items: center; justify-content: center; gap: 44px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display); font-size: 36px; font-weight: 700;
+  color: var(--off-white); text-decoration: none; letter-spacing: -0.02em;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--orange); }
+.mobile-close {
+  position: absolute; top: 28px; right: 40px;
+  background: none; border: none; color: var(--off-white); font-size: 30px; cursor: pointer;
+}
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stripes container — right half */
+.hero-stripes-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Each stripe slides in from the right */
+.hstripe {
+  height: 80px;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(110%);
+  transition: none;
+}
+.hstripe.in {
+  animation: slideInStripe 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hstripe-1 { background: var(--teal);   animation-delay: 0.1s; }
+.hstripe-2 { background: var(--brown);  animation-delay: 0.22s; }
+.hstripe-3 { background: var(--red);    animation-delay: 0.34s; }
+.hstripe-4 { background: var(--orange); animation-delay: 0.46s; }
+.hstripe-5 { background: var(--sand);   animation-delay: 0.58s; }
+
+/* Left content */
+.hero-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 64px 80px calc(max((100vw - 1200px)/2, 0px) + 40px);
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 5.5vw, 88px);
+  font-weight: 700; line-height: 1.0;
+  letter-spacing: -0.03em; color: var(--off-white);
+  margin-bottom: 36px;
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-title span { color: var(--orange); }
+.hero-sub {
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 300; line-height: 1.75;
+  color: rgba(245,245,245,0.55);
+  max-width: 460px; margin-bottom: 52px;
+  opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 17px 34px; font-family: var(--font-body);
+  font-size: 14px; font-weight: 700; letter-spacing: 0.04em;
+  text-decoration: none; border-radius: 2px; transition: all 0.25s;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--orange); color: var(--off-white); }
+.btn-primary:hover { background: #ff7a35; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,105,29,0.35); }
+.btn-outline { background: transparent; color: var(--off-white); border: 1.5px solid rgba(245,245,245,0.25); }
+.btn-outline:hover { border-color: rgba(245,245,245,0.6); transform: translateY(-2px); }
+
+/* scroll indicator */
+.hero-scroll {
+  position: absolute; bottom: 40px; left: calc(max((100vw - 1200px)/2, 0px) + 40px);
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0; animation: fadeUp 0.6s 1.3s forwards;
+}
+.hero-scroll span {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,245,245,0.3);
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, rgba(255,105,29,0.8), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ══ NUMBERS ══ */
+.numbers {
+  background: var(--orange); padding: 32px 0;
+}
+.numbers-grid {
+  display: flex; justify-content: space-around; gap: 24px; flex-wrap: wrap;
+}
+.number-item { text-align: center; }
+.number-item strong {
+  display: block;
+  font-size: 88px; font-weight: 700;
+  color: var(--off-white); line-height: 1; letter-spacing: -0.04em;
+}
+.count-up {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 88px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+.number-item span {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245,245,245,0.7);
+  margin-top: 12px; display: block;
+}
+@media (max-width: 768px) {
+  .number-item strong, .count-up { font-size: 56px !important; }
+}
+
+/* ══ MANIFESTO ══ */
+.manifesto { padding: 130px 0; background: var(--off-white); }
+.manifesto-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.manifesto-visual { position: relative; }
+.manifesto-img { width: 100%; border-radius: 4px; }
+.manifesto-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.5vw, 52px); font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.1;
+  color: var(--dark); margin-bottom: 28px;
+}
+.manifesto-text p {
+  font-size: 16px; line-height: 1.85; color: #555; margin-bottom: 20px;
+}
+.manifesto-text p:last-of-type { margin-bottom: 36px; }
+.manifesto-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pill {
+  padding: 9px 20px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.pill-dark { background: var(--dark); color: var(--off-white); }
+.pill-orange { background: var(--orange); color: var(--off-white); }
+.pill-teal { background: var(--teal); color: var(--dark); }
+.pill-red { background: var(--red); color: var(--off-white); }
+
+/* ══ SERVICES ══ */
+.services { padding: 130px 0; background: var(--dark); }
+.services-header { margin-bottom: 72px; }
+.services-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 68px); font-weight: 700;
+  letter-spacing: -0.03em; color: var(--off-white); line-height: 1.0;
+}
+.services-header h2 span { color: var(--orange); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.service-card {
+  background: rgba(245,245,245,0.04);
+  border: 1px solid rgba(245,245,245,0.07);
+  padding: 44px 38px; transition: all 0.35s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.35s;
+}
+.service-card:hover { background: rgba(245,245,245,0.08); transform: translateY(-5px); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-number {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; color: var(--orange); margin-bottom: 20px; display: block;
+}
+.service-card h3 {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--off-white); margin-bottom: 14px; letter-spacing: -0.01em;
+}
+.service-card p {
+  font-size: 14px; line-height: 1.75; color: rgba(245,245,245,0.5); margin-bottom: 28px;
+}
+.service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(245,245,245,0.3); border: 1px solid rgba(245,245,245,0.1);
+  padding: 5px 12px; border-radius: 100px;
+}
+.service-card.wide {
+  grid-column: span 3;
+}
+.service-card.wide .service-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+}
+
+/* ══ CLIENTS ══ */
+.clients { padding: 110px 0; background: var(--sand); }
+.clients-header { text-align: center; margin-bottom: 64px; }
+.clients-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--dark); margin-bottom: 16px;
+}
+.clients-header p { font-size: 15px; color: #666; }
+.clients-marquee { overflow: hidden; position: relative; margin-bottom: 0; }
+.clients-marquee::before, .clients-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+}
+.clients-marquee::before { left: 0; background: linear-gradient(to right, var(--sand), transparent); }
+.clients-marquee::after { right: 0; background: linear-gradient(to left, var(--sand), transparent); }
+.clients-track {
+  display: flex; animation: marquee 28s linear infinite; width: max-content;
+}
+.clients-track2 { animation-direction: reverse; animation-duration: 35s; }
+.client-item {
+  padding: 18px 44px; font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark); opacity: 0.35;
+  white-space: nowrap; border-right: 1px solid rgba(27,27,27,0.1); transition: opacity 0.2s;
+}
+.client-item:hover { opacity: 0.9; }
+
+/* ══ TEAM ══ */
+.team { padding: 130px 0; background: var(--off-white); }
+.team-header { margin-bottom: 72px; }
+.team-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--dark); line-height: 1.05;
+}
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+
+/* Flashcard */
+.team-card {
+  aspect-ratio: 1/1;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.team-card-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform-style: preserve-3d;
+  border-radius: 4px;
+}
+.team-card.flipped .team-card-inner {
+  transform: rotateY(180deg);
+}
+.team-card-front,
+.team-card-back {
+  position: absolute; inset: 0;
+  border-radius: 4px; overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.team-card-front img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+/* hint bar on front */
+.team-card-hint {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(27,27,27,0.85) 0%, transparent 100%);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.team-card-hint span {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(245,245,245,0.7);
+}
+.team-card-hint .hint-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid rgba(245,245,245,0.4);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--off-white); font-size: 13px; transition: all 0.2s;
+}
+.team-card:hover .hint-icon {
+  background: var(--orange); border-color: var(--orange);
+}
+
+/* back of card */
+.team-card-back {
+  transform: rotateY(180deg);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 32px 28px;
+}
+.team-card-back-teal  { background: var(--teal); }
+.team-card-back-red   { background: var(--red); }
+.team-card-back-brown { background: var(--brown); }
+
+.team-card-back-name {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700;
+  color: var(--off-white); letter-spacing: -0.01em; line-height: 1.1;
+  margin-bottom: 8px;
+}
+.team-card-back-role {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(245,245,245,0.65);
+  margin-bottom: 20px;
+}
+.team-card-back-bio {
+  font-size: 14px; line-height: 1.7; color: rgba(245,245,245,0.85);
+  flex: 1; display: flex; align-items: flex-start; padding-top: 20px;
+  border-top: 1px solid rgba(245,245,245,0.2);
+}
+.team-card-back-close {
+  margin-top: 24px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(245,245,245,0.5);
+  display: flex; align-items: center; gap: 8px;
+}
+.team-card-back-close::before {
+  content: '↩'; font-size: 14px;
+}
+
+/* team footer text */
+.team-footer {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 48px 0 0;
+}
+.team-footer-line {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.team-footer-line span {
+  display: block;
+  height: 5px;
+  border-radius: 2px;
+}
+.team-footer-line span:nth-child(1) { width: 48px; background: var(--teal); }
+.team-footer-line span:nth-child(2) { width: 36px; background: var(--brown); }
+.team-footer-line span:nth-child(3) { width: 56px; background: var(--red); }
+.team-footer-line span:nth-child(4) { width: 28px; background: var(--orange); }
+.team-footer-line span:nth-child(5) { width: 44px; background: var(--sand); filter: brightness(0.7); }
+.team-footer p {
+  font-size: 18px; line-height: 1.75; color: var(--dark);
+  font-weight: 400; max-width: 680px;
+}
+
+/* ══ CTA FINAL ══ */
+.cta-final {
+  padding: 160px 0; background: var(--brown);
+  position: relative; overflow: hidden; text-align: center;
+}
+
+.cta-final-inner { position: relative; z-index: 2; }
+.cta-final h2 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 84px); font-weight: 700;
+  letter-spacing: -0.03em; color: var(--off-white); line-height: 1.0; margin-bottom: 24px;
+}
+.cta-final h2 span { color: var(--orange); }
+.cta-final p {
+  font-size: 17px; line-height: 1.75; color: var(--sand);
+  max-width: 500px; margin: 0 auto 52px;
+}
+
+/* ══ FOOTER ══ */
+footer { background: var(--dark); padding: 64px 0 32px; }
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 48px; padding-bottom: 52px;
+  border-bottom: 1px solid rgba(245,245,245,0.07); flex-wrap: wrap;
+}
+.footer-logo { height: 64px; filter: invert(1); }
+.footer-tagline { font-size: 13px; color: rgba(245,245,245,0.35); margin-top: 14px; font-style: italic; }
+.footer-links h4 {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;
+}
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+  font-size: 13px; color: rgba(245,245,245,0.5); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--off-white); }
+.footer-bottom {
+  padding-top: 32px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 12px; color: rgba(245,245,245,0.25); }
+.footer-social { display: flex; gap: 24px; }
+.footer-social a {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(245,245,245,0.35); text-decoration: none; transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--orange); }
+
+/* ══ WHATSAPP FLOAT ══ */
+.whatsapp-float {
+  position: fixed; bottom: 32px; right: 32px; z-index: 50;
+  width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+  transition: transform 0.25s, box-shadow 0.25s;
+  opacity: 0; animation: fadeUp 0.8s 1.6s forwards;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 32px rgba(37,211,102,0.5);
+}
+.whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ══ ANIMATIONS ══ */
+@keyframes slideInStripe {
+  from { opacity: 0; transform: translateX(110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.3); }
+}
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-stripes-wrap { height: 220px; }
+  .hstripe { height: 44px; }
+  .hero-content { padding: 100px 24px 60px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-cta { display: none; }
+  .manifesto-inner { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card.wide { grid-column: span 2; }
+  .service-card.wide .service-inner { grid-template-columns: 1fr; gap: 0; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card.wide { grid-column: span 1; }
+  .team-grid { grid-template-columns: 1fr; }
+  nav { padding: 20px 24px; }
+  .container { padding: 0 24px; }
+}
+
+  /* ── CURSOR ── */
+  * { cursor: none !important; }
+  .cursor-dot {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9998;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1.5px solid rgba(255,105,29,0.5);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+  }
+  .cursor-dot.hovered { width: 12px; height: 12px; }
+  .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--orange); }
+  .cursor-dot.clicked { transform: translate(-50%, -50%) scale(0.5); }
+  @media (hover: none) {
+    * { cursor: auto !important; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+
+  /* ── TEXT REVEAL ── */
+  .reveal-text {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+  }
+  .reveal-text-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-text.visible .reveal-text-inner {
+    transform: translateY(0);
+  }
+
+  /* ── PARALLAX ── */
+  .hero-stripes-wrap { will-change: transform; }
+
+  /* ── COUNTER ── */
+  .count-up { display: inline-block; }
+
+  /* ── SERVICE REVEAL ── */
+  .service-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease, background 0.35s, box-shadow 0.35s;
+  }
+  .service-card.card-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+/* ══ MOA LABS ══ */
+.labs {
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+.labs-top-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 0 80px;
+}
+.labs-logo {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+}
+.labs-intro {}
+.labs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: var(--dark);
+  padding: 7px 16px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.labs-badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--dark);
+  animation: labsPulse 2s ease-in-out infinite;
+}
+.labs-intro p {
+  font-size: 17px;
+  line-height: 1.85;
+  color: rgba(245,245,245,0.55);
+  max-width: 480px;
+}
+.labs-intro p strong {
+  color: var(--off-white);
+  font-weight: 600;
+}
+
+/* Bottom grid */
+.labs-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(245,245,245,0.08);
+}
+.labs-item {
+  padding: 52px 44px;
+  border-right: 1px solid rgba(245,245,245,0.08);
+  transition: background 0.3s;
+  position: relative;
+  background: var(--dark);
+}
+.labs-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.labs-item:hover::after { transform: scaleX(1); }
+.labs-item:last-child { border-right: none; }
+.labs-item:hover { background: rgba(245,245,245,0.04); }
+.labs-item-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  margin-bottom: 20px;
+  display: block;
+}
+.labs-item h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--off-white);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.labs-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(245,245,245,0.5);
+}
+
+@keyframes labsPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@media (max-width: 960px) {
+  .labs-top-inner { grid-template-columns: 1fr; gap: 40px; padding: 72px 0 56px; }
+  .labs-bottom { grid-template-columns: 1fr; }
+  .labs-item { border-right: none; border-bottom: 1px solid rgba(27,27,27,0.12); }
+}
+
+</style>
+
+<style>
+/* ==== BLOG MOA ==== */
+.blog-hero { background: var(--dark); color: var(--off-white); padding: 160px 0 70px; }
+.blog-hero h1 { font-family: var(--font-display); font-size: clamp(34px,5vw,60px); font-weight:600; line-height:1.05; letter-spacing:-.02em; }
+.blog-hero p { max-width: 620px; margin-top: 18px; color: var(--sand); font-size: 18px; line-height:1.6; }
+.post-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 26px; padding: 70px 0 90px; }
+.post-card { display:flex; flex-direction:column; background:#fff; border:1px solid #e6e5db; border-radius:16px; padding:30px; text-decoration:none; color:var(--dark); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(27,27,27,.10); border-color: var(--orange); }
+.post-cat { font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); }
+.post-card h2 { font-family:var(--font-display); font-size:22px; font-weight:600; line-height:1.25; margin:14px 0 12px; letter-spacing:-.01em; }
+.post-card p { font-size:15px; line-height:1.6; color:#555; flex:1; }
+.post-meta { margin-top:20px; font-size:13px; color:#9a9a90; }
+.post-more { margin-top:16px; font-weight:600; color:var(--red); font-size:14px; }
+
+.article { padding: 150px 0 40px; }
+.article-wrap { max-width: 760px; margin: 0 auto; }
+.breadcrumb { font-size:13px; color:#9a9a90; margin-bottom:26px; }
+.breadcrumb a { color:#9a9a90; text-decoration:none; } .breadcrumb a:hover { color:var(--orange); }
+.article-cat { font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); }
+.article h1 { font-family:var(--font-display); font-size: clamp(30px,4.5vw,48px); font-weight:600; line-height:1.1; letter-spacing:-.02em; margin:14px 0 16px; }
+.article-meta { font-size:14px; color:#9a9a90; padding-bottom:30px; border-bottom:1px solid #e6e5db; margin-bottom:36px; }
+.article-body { font-size:18px; line-height:1.75; color:#2a2a2a; }
+.article-body h2 { font-family:var(--font-display); font-size:26px; font-weight:600; letter-spacing:-.01em; margin:44px 0 16px; }
+.article-body p { margin: 0 0 20px; }
+.article-body ul, .article-body ol { margin: 0 0 24px; padding-left: 24px; }
+.article-body li { margin-bottom: 10px; }
+.article-body strong { color: var(--dark); }
+.quick-answer { background:#eff6f6; border-left:4px solid var(--teal); border-radius:0 12px 12px 0; padding:20px 24px; margin:0 0 32px; font-size:17px; line-height:1.65; }
+.quick-answer strong { color: var(--brown); }
+.faq { margin-top: 20px; }
+.faq-item { border-top:1px solid #e6e5db; padding:22px 0; }
+.faq-item h3 { font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:8px; }
+.faq-item p { font-size:16px; line-height:1.65; color:#444; margin:0; }
+.post-cta { background:var(--dark); color:var(--off-white); border-radius:20px; padding:44px 40px; margin:56px 0 20px; text-align:center; }
+.post-cta p { font-size:19px; line-height:1.6; margin-bottom:24px; }
+.post-cta a { display:inline-block; background:var(--teal); color:#08302f; font-weight:700; text-decoration:none; padding:15px 34px; border-radius:50px; font-size:16px; transition:transform .2s ease; }
+.post-cta a:hover { transform: translateY(-2px); }
+.back-blog { display:inline-block; margin-top:34px; color:var(--red); font-weight:600; text-decoration:none; font-size:15px; }
+@media (max-width:640px){ .article{padding:120px 0 30px} .blog-hero{padding:130px 0 55px} .post-grid{padding:50px 0 70px} }
+</style>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Por que meu negócio não aparece no Google Maps (e como resolver)", "description": "Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.", "datePublished": "2026-08-04T09:00:00-03:00", "dateModified": "2026-08-04T09:00:00-03:00", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Agência MOA", "url": "https://agenciamoa.com.br"}, "publisher": {"@type": "Organization", "name": "Agência MOA", "url": "https://agenciamoa.com.br"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://agenciamoa.com.br/blog/negocio-nao-aparece-no-google-maps.html"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://agenciamoa.com.br/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://agenciamoa.com.br/blog/"}, {"@type": "ListItem", "position": 3, "name": "Por que meu negócio não aparece no Google Maps (e como resolver)", "item": "https://agenciamoa.com.br/blog/negocio-nao-aparece-no-google-maps.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Meu negócio não tem endereço físico com atendimento ao público. Ainda posso aparecer?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Você configura o perfil como \"área de atendimento\", informando as regiões que atende em vez de um endereço aberto ao público."}}, {"@type": "Question", "name": "Criei o perfil e mesmo assim não aparece. Por quê?", "acceptedAnswer": {"@type": "Answer", "text": "Quase sempre é porque a verificação não foi concluída. Confira se o perfil está marcado como verificado. Se estiver e ainda não aparecer, revise categoria e completude."}}, {"@type": "Question", "name": "Perfil da Empresa e Google Meu Negócio são a mesma coisa?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O Google renomeou o \"Google Meu Negócio\" para \"Perfil da Empresa no Google\". A função é a mesma: gerenciar como seu negócio aparece na Busca e no Maps."}}, {"@type": "Question", "name": "Preciso pagar para aparecer no Google Maps?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O perfil é gratuito. Você só paga se quiser anunciar (aparecer em destaque como anúncio), o que é diferente de aparecer no Maps de forma orgânica."}}]}</script>
+</head>
+<body>
+<nav id="navbar">
+  <img style="filter: brightness(0) invert(1);" src="/assets/img/logo.svg" alt="agência MOA" class="nav-logo" alt="agência MOA" class="nav-logo">
+  <ul class="nav-links">
+    <li><a href="/#manifesto">Quem Somos</a></li>
+    <li><a href="/#services">Serviços</a></li>
+    <li><a href="/#clients">Clientes</a></li>
+    <li><a href="/#team">Time</a></li>
+    <li><a href="/blog/">Blog</a></li>
+  </ul>
+  <a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="nav-cta">
+    Fala com a gente
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<article class="article">
+  <div class="container"><div class="article-wrap">
+    <nav class="breadcrumb"><a href="/">Início</a> / <a href="/blog/">Blog</a> / Por que meu negócio não aparece no Google Maps (e como resolver)</nav>
+    <span class="article-cat">Google Meu Negócio</span>
+    <h1>Por que meu negócio não aparece no Google Maps (e como resolver)</h1>
+    <div class="article-meta">04/08/2026 · 5 min de leitura</div>
+    <div class="quick-answer"><strong>Resposta rápida:</strong> na maioria dos casos, um negócio não aparece no Google Maps por um destes motivos: o perfil da empresa (Google Meu Negócio) nunca foi criado ou verificado, está com a categoria errada, tem informações incompletas, ou está com pouca relevância local (poucas avaliações e sinais). A boa notícia é que quase tudo isso se resolve, e este guia mostra como.</div>
+    <div class="article-body">
+      <p>Se você digita o nome da sua empresa no Google Maps e ela não aparece, ou aparece de qualquer jeito, você está perdendo cliente todo dia. A maior parte das buscas por serviços locais (restaurante perto de mim, conserto de celular, dentista no bairro) acontece exatamente ali. Quem não aparece, não é considerado.</p>
+<p>Vamos às causas e ao conserto.</p>
+<h2>As 5 razões mais comuns</h2>
+<ol><li><strong>O perfil nunca foi criado.</strong> O Google só mostra no Maps empresas que têm um Perfil da Empresa (o antigo Google Meu Negócio). Sem perfil, não há o que mostrar.</li><li><strong>O perfil não foi verificado.</strong> Criar não basta. Enquanto você não confirma que é o dono (por código, vídeo ou ligação), o Google não confia no perfil e o mantém escondido.</li><li><strong>A categoria está errada ou vazia.</strong> A categoria principal é o que diz ao Google para quais buscas você deve aparecer. Uma confecção cadastrada como "loja de roupas" pode sumir de quem procura "ajuste de roupa".</li><li><strong>As informações estão incompletas.</strong> Endereço, horário, telefone, fotos, serviços. Perfil pela metade é perfil que o Google mostra menos.</li><li><strong>Falta relevância local.</strong> Poucas avaliações, nenhuma foto recente, nenhuma novidade. O Google prioriza quem parece ativo e confiável para aquela região.</li></ol>
+<h2>Como resolver, passo a passo</h2>
+<ol><li><strong>Verifique se o perfil existe.</strong> Busque o nome da sua empresa no Google. Se aparecer um painel à direita com mapa e informações, o perfil existe. Se não, você vai criar um.</li><li><strong>Crie ou reivindique o perfil.</strong> Acesse o Perfil da Empresa no Google e siga o cadastro. Se o perfil já existe mas não é seu, use a opção de reivindicar a propriedade.</li><li><strong>Faça a verificação.</strong> É o passo que mais gente trava e o mais importante. Sem ele, nada aparece. Siga o método que o Google oferecer (vídeo, código ou ligação) até o perfil ficar confirmado.</li><li><strong>Escolha a categoria principal certa.</strong> Pense na palavra que seu cliente digitaria. Depois adicione categorias secundárias para cobrir todos os serviços.</li><li><strong>Complete tudo.</strong> Endereço exato, horário real, telefone/WhatsApp, site, lista de serviços e uma descrição clara. Adicione fotos boas (fachada, interior, produtos, equipe).</li><li><strong>Peça avaliações.</strong> Avaliação recente e resposta do dono é um dos sinais mais fortes de relevância local. Peça a clientes satisfeitos e responda a todas.</li><li><strong>Mantenha ativo.</strong> Poste novidades, atualize fotos, ajuste horário em feriado. Perfil vivo aparece mais.</li></ol>
+<h2>Quanto tempo leva para aparecer</h2>
+<p>Depois da verificação, o perfil costuma aparecer no Maps em alguns dias. Ganhar posição para buscas mais concorridas (a categoria, não só o nome) leva mais tempo e depende de completude, avaliações e constância. É trabalho contínuo, não um clique.</p>
+      <h2>Perguntas frequentes</h2><div class="faq"><div class="faq-item"><h3>Meu negócio não tem endereço físico com atendimento ao público. Ainda posso aparecer?</h3><p>Sim. Você configura o perfil como "área de atendimento", informando as regiões que atende em vez de um endereço aberto ao público.</p></div><div class="faq-item"><h3>Criei o perfil e mesmo assim não aparece. Por quê?</h3><p>Quase sempre é porque a verificação não foi concluída. Confira se o perfil está marcado como verificado. Se estiver e ainda não aparecer, revise categoria e completude.</p></div><div class="faq-item"><h3>Perfil da Empresa e Google Meu Negócio são a mesma coisa?</h3><p>Sim. O Google renomeou o "Google Meu Negócio" para "Perfil da Empresa no Google". A função é a mesma: gerenciar como seu negócio aparece na Busca e no Maps.</p></div><div class="faq-item"><h3>Preciso pagar para aparecer no Google Maps?</h3><p>Não. O perfil é gratuito. Você só paga se quiser anunciar (aparecer em destaque como anúncio), o que é diferente de aparecer no Maps de forma orgânica.</p></div></div>
+    </div>
+    <div class="post-cta"><p>Aparecer no Google Maps é o passo mais barato e mais rápido para um negócio local ser encontrado, e ainda assim é onde a maioria deixa dinheiro na mesa. Se você quer isso resolvido do jeito certo, sem travar na verificação e com a categoria e as informações otimizadas para trazer cliente, a gente cuida disso pra você. Fale com a MOA.</p><a href="https://wa.me/5588988575422?text=Oi%21%20Vim%20pelo%20blog%20da%20MOA%20e%20quero%20falar%20sobre%20meu%20neg%C3%B3cio." target="_blank" rel="noopener">Falar com a MOA no WhatsApp</a></div>
+    <a class="back-blog" href="/blog/">← Voltar para o blog</a>
+  </div></div>
+</article>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <img src="/assets/img/logo.svg" alt="agência MOA" alt="agência MOA" class="footer-logo">
+        <p class="footer-tagline">Você tem uma ideia.<br>A gente tem um plano.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="/#manifesto">Quem Somos</a></li>
+          <li><a href="/#services">Serviços</a></li>
+          <li><a href="/#team">Time</a></li>
+          <li><a href="/#contact">Contato</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/agencia-de-marketing-em-teresina.html">Agência de Marketing em Teresina</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="/#services">Marketing Digital</a></li>
+          <li><a href="/#services">Gestão de Tráfego</a></li>
+          <li><a href="/#services">Fotografia & Vídeo</a></li>
+          <li><a href="/#services">Desenvolvimento Web</a></li>
+          <li><a href="/#services">Soluções com IA</a></li>
+          <li><a href="/marketing-para-medicos-em-teresina.html">Marketing para Médicos</a></li>
+          <li><a href="/marketing-para-restaurantes-em-teresina.html">Marketing para Restaurantes</a></li>
+          <li><a href="/marketing-para-hoteis-em-teresina.html">Marketing para Hotéis</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5588988575422">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/agenciamoa.mkt/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 agência MOA. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/agenciamoa.mkt/" target="_blank">Instagram</a>
+        <a href="https://wa.me/5588988575422">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

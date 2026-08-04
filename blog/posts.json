@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "slug": "negocio-nao-aparece-no-google-maps",
+      "category": "Google Meu Negócio",
+      "description": "Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.",
+      "date": "2026-08-04",
+      "read": 5
+    },
+    {
+      "slug": "quanto-custa-google-ads",
+      "category": "Google Ads",
+      "description": "Quanto custa anunciar no Google Ads? Entenda as duas partes do custo, quanto investir para começar e o que faz o preço subir ou descer. Guia 2026.",
+      "date": "2026-08-05",
+      "read": 6
+    },
+    {
+      "slug": "vale-a-pena-agencia-de-trafego",
+      "category": "Tráfego Pago",
+      "description": "Vale a pena contratar agência de tráfego? Quando vale, quando não vale, como escolher e as bandeiras vermelhas para decidir antes de gastar.",
+      "date": "2026-08-06",
+      "read": 6
+    },
+    {
+      "slug": "como-otimizar-google-meu-negocio",
+      "category": "Google Meu Negócio",
+      "description": "Como otimizar o Google Meu Negócio (Perfil da Empresa) em 2026: passo a passo completo de verificação, categoria, fotos, avaliações e mais.",
+      "date": "2026-08-07",
+      "read": 6
+    }
+  ]
+}
