@@ -730,6 +730,28 @@ footer { background: var(--dark); padding: 64px 0 32px; }
 }
 
 
+/* FAQ sanfona — home */
+.faq-sec { padding: 120px 0; background: var(--off-white); }
+.faq-sec .faq-head { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+.faq-list { max-width: 820px; margin: 44px auto 0; padding: 0 24px; }
+.faq-item { border-bottom: 1px solid rgba(27,27,27,.12); }
+.faq-item summary { font-family: var(--font-display); font-weight: 600; font-size: 20px;
+  color: var(--dark); padding: 26px 0; cursor: pointer; list-style: none; display: flex;
+  justify-content: space-between; align-items: center; gap: 24px; transition: color .2s; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--orange); }
+.faq-item summary::after { content: "+"; color: var(--orange); font-size: 30px;
+  font-weight: 300; line-height: 1; flex-shrink: 0; transition: transform .2s; }
+.faq-item[open] summary::after { content: "\2013"; }
+.faq-item p { padding: 0 0 26px; color: rgba(27,27,27,.72); font-size: 16.5px;
+  line-height: 1.75; max-width: 92%; }
+@media (max-width: 700px) {
+  .faq-sec { padding: 80px 0; }
+  .faq-item summary { font-size: 17px; padding: 22px 0; }
+  .faq-item p { max-width: 100%; }
+}
+
+
 /* FAQ — páginas de nicho */
 .faq-sec { padding: 120px 0; background: var(--off-white); }
 .faq-list { max-width: 820px; margin: 48px auto 0; }
@@ -751,8 +773,8 @@ footer { background: var(--dark); padding: 64px 0 32px; }
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Agência MOA — Marketing Digital e Design em Teresina-PI">
-<meta name="twitter:description" content="Estratégia, design, marketing digital e produção audiovisual em Teresina-PI. Do conceito à entrega, sem atalhos.">
+<meta name="twitter:title" content="Marketing para Hotéis e Pousadas em Teresina | Agência MOA">
+<meta name="twitter:description" content="Marketing para hotéis e pousadas em Teresina-PI: Google Meu Negócio, fotografia de hospedagem, reserva direta e tráfego pago. Menos dependência de OTA. Fale com a MOA.">
 <meta name="twitter:image" content="https://agenciamoa.com.br/assets/img/hero-manifesto.webp">
 <link rel="canonical" href="https://agenciamoa.com.br/marketing-para-hoteis-em-teresina.html">
 <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
@@ -761,13 +783,14 @@ footer { background: var(--dark); padding: 64px 0 32px; }
   "@context": "https://schema.org",
   "@type": "MarketingAgency",
   "name": "Agência MOA",
-  "description": "Agência de marketing digital em Teresina-PI especializada em estratégia, design, tecnologia e produção audiovisual. Do conceito à entrega, sem atalhos.",
+  "description": "Agência de marketing digital em Teresina-PI, com mais de 6 anos de estrada (antes Dojo Digital), mais de 30 clientes ativos e mais de 80 sites entregues. Estratégia, tráfego pago, sites, design e produção audiovisual.",
   "url": "https://agenciamoa.com.br",
   "logo": "https://agenciamoa.com.br/assets/img/logo.svg",
   "image": "https://agenciamoa.com.br/assets/img/hero-manifesto.webp",
   "telephone": "+5588988575422",
   "sameAs": [
-    "https://www.instagram.com/agenciamoa.mkt/"
+    "https://www.instagram.com/agenciamoa.mkt/",
+    "https://g.page/r/CT25OWVGAkb4EBM/"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -778,10 +801,79 @@ footer { background: var(--dark); padding: 64px 0 32px; }
     "addressCountry": "BR"
   },
   "offers": [
-    {"@type": "Offer", "name": "Estratégia de Marca"},
-    {"@type": "Offer", "name": "Design e Identidade Visual"},
-    {"@type": "Offer", "name": "Desenvolvimento Web"},
-    {"@type": "Offer", "name": "Produção Audiovisual"}
+    {
+      "@type": "Offer",
+      "name": "Estratégia de Marca"
+    },
+    {
+      "@type": "Offer",
+      "name": "Design e Identidade Visual"
+    },
+    {
+      "@type": "Offer",
+      "name": "Desenvolvimento Web"
+    },
+    {
+      "@type": "Offer",
+      "name": "Produção Audiovisual"
+    },
+    {
+      "@type": "Offer",
+      "name": "Gestão de Tráfego Pago (Google Ads e Meta Ads)"
+    },
+    {
+      "@type": "Offer",
+      "name": "Criação de Sites e Landing Pages"
+    },
+    {
+      "@type": "Offer",
+      "name": "Google Meu Negócio e SEO local"
+    }
+  ],
+  "@id": "https://agenciamoa.com.br/#organizacao",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Teresina"
+    },
+    {
+      "@type": "State",
+      "name": "Piauí"
+    },
+    {
+      "@type": "Country",
+      "name": "Brasil"
+    }
+  ],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -5.0709,
+    "longitude": -42.7866
+  },
+  "priceRange": "$$",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
+  "knowsAbout": [
+    "Marketing digital",
+    "Google Ads",
+    "Meta Ads",
+    "Google Meu Negócio",
+    "Criação de sites",
+    "SEO local",
+    "Produção audiovisual",
+    "Identidade visual"
   ]
 }
 </script>
@@ -866,6 +958,7 @@ footer { background: var(--dark); padding: 64px 0 32px; }
     <li><a href="index.html#services">Serviços</a></li>
     <li><a href="index.html#clients">Clientes</a></li>
     <li><a href="index.html#team">Time</a></li>
+    <li><a href="/blog/">Blog</a></li>
   </ul>
   <a href="https://wa.me/5588988575422?text=Olá!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20serviços%20da%20MOA." class="nav-cta">
     Fala com a gente
@@ -1156,6 +1249,7 @@ footer { background: var(--dark); padding: 64px 0 32px; }
           <li><a href="index.html#services">Serviços</a></li>
           <li><a href="index.html#team">Time</a></li>
           <li><a href="#contact">Contato</a></li>
+          <li><a href="/blog/">Blog</a></li>
           <li><a href="index.html">Agência de Marketing em Teresina</a></li>
         </ul>
       </div>

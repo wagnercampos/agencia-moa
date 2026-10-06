@@ -19,7 +19,8 @@ python3 _scripts/build_nichos.py
   - `top` = tudo antes de `<!-- HERO -->` (head + nav + menu mobile)
   - `bottom` = de `<!-- FOOTER -->` até o fim (rodapé + WhatsApp float + scripts)
   - `clients` = entre `<!-- CLIENTS -->` e `<!-- TEAM -->` (vitrine de 30 marcas, injetada como prova social)
-- Troca o SEO do head (title/description/og/canonical) e injeta schema `Service` + `FAQPage`
+- Troca o SEO do head (title/description/og/twitter/canonical) **pela tag, não pelo texto** (o head da home
+  pode mudar à vontade sem quebrar o script), **remove o `FAQPage` da home** (schema espelha o visível) e injeta schema `Service` + `FAQPage`
   (o `MarketingAgency` da home vem junto no casco → 3 blocos JSON-LD por página).
 - Injeta o CSS do FAQ (usa os tokens da marca: `--orange`, `--font-display`…).
 - Reescreve âncoras de seções que **não existem** na página de nicho (`#manifesto`, `#services`,

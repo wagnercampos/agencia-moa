@@ -6,7 +6,7 @@ Corta por MARCADOR, nunca por número de linha (o index muda de tamanho).
 Miolo é próprio de cada nicho (não é clone da home -> evita página-porta).
 Rodar de dentro de ~/Documents/Criador de Sites/agencia-moa
 """
-import json, pathlib, sys
+import re, json, pathlib, sys
 
 BASE = pathlib.Path.home() / "Documents/Criador de Sites/agencia-moa"
 SITE = "https://agenciamoa.com.br"
@@ -189,21 +189,27 @@ def build(src, n):
     clients = clients.replace('<section class="clients" id="clients">', '<section class="clients">')
 
     # ---- head/SEO
+    # Troca pela TAG, não pelo conteúdo: o texto do head da home muda (aconteceu em
+    # 15/09 e 05/10) e o script não pode quebrar por causa disso. Cada tag tem que
+    # aparecer exatamente 1 vez, senão aborta.
     reps = [
-     ('<meta name="description" content="Agência MOA em Teresina-PI — estratégia, design, marketing digital e produção audiovisual. Transformamos sua ideia em presença real. Do conceito à entrega, sem atalhos.">',
-      f'<meta name="description" content="{n["desc"]}">'),
-     ('<meta property="og:title" content="Agência MOA — Marketing Digital e Design em Teresina-PI">',
-      f'<meta property="og:title" content="{n["title"]}">'),
-     ('<meta property="og:description" content="Estratégia, design, marketing digital e produção audiovisual em Teresina-PI. Do conceito à entrega, sem atalhos.">',
-      f'<meta property="og:description" content="{n["desc"]}">'),
-     ('<title>Agência MOA — Marketing Digital e Design em Teresina-PI</title>', f'<title>{n["title"]}</title>'),
-     ('<meta property="og:url" content="https://agenciamoa.com.br/">', f'<meta property="og:url" content="{url}">'),
-     ('<link rel="canonical" href="https://agenciamoa.com.br/">', f'<link rel="canonical" href="{url}">'),
+     (r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{n["desc"]}">'),
+     (r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{n["title"]}">'),
+     (r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{n["desc"]}">'),
+     (r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{n["title"]}">'),
+     (r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{n["desc"]}">'),
+     (r'<title>[^<]*</title>', f'<title>{n["title"]}</title>'),
+     (r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{url}">'),
+     (r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">'),
     ]
-    for a, b in reps:
-        if a not in top:
-            sys.exit(f"ERRO [{n['slug']}]: trecho de head não encontrado -> {a[:60]}")
-        top = top.replace(a, b)
+    for pat, b in reps:
+        if len(re.findall(pat, top)) != 1:
+            sys.exit(f"ERRO [{n['slug']}]: tag de head não encontrada (ou repetida) -> {pat}")
+        top = re.sub(pat, lambda _m: b, top)
+
+    # o FAQPage da home não pode vir junto: schema tem que espelhar o que está
+    # visível, e a página de nicho mostra só o FAQ dela
+    top = re.sub(r'<script type="application/ld\+json">(?:(?!</script>).)*"FAQPage".*?</script>\n?', '', top, flags=re.S)
 
     # ---- schema Service + FAQPage
     service = {"@context":"https://schema.org","@type":"Service","serviceType":n["service_type"],
