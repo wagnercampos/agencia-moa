@@ -54,6 +54,9 @@ def to_abs(fragment):
 
 NAV_ABS = to_abs(NAV)
 FOOTER_ABS = to_abs(FOOTER)
+# menu do celular: o botão do <nav> chama toggleMenu(), que só existe na home
+MOBILE_ABS = to_abs(grab(r'<div class="mobile-menu" id="mobileMenu">.*?</div>', INDEX, "menu mobile"))
+MENU_JS = "<script>function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}</script>"
 
 # ---------- CSS específico do blog ----------
 BLOG_CSS = """
@@ -90,6 +93,16 @@ BLOG_CSS = """
 .faq-item { border-top:1px solid #e6e5db; padding:22px 0; }
 .faq-item h3 { font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:8px; }
 .faq-item p { font-size:16px; line-height:1.65; color:#444; margin:0; }
+/* o casco da home traz o menu transparente e o cursor customizado, mas não o JS
+   que escurece o menu ao rolar nem o que desenha a bolinha: no blog o menu já nasce
+   escuro e o cursor volta a ser o do sistema */
+#navbar { padding: 16px 48px; background: rgba(27,27,27,0.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+@media (max-width: 900px) { #navbar { padding: 16px 24px; } }
+* { cursor: auto !important; }
+a, button, summary, [onclick] { cursor: pointer !important; }
+.cursor-dot, .cursor-ring { display: none !important; }
+.mobile-menu { z-index: 200; }  /* acima do menu escuro, senão o ✕ some */
 /* neutraliza o CSS do FAQ em sanfona da home, que vem junto no casco */
 .article .faq-item { border-bottom:none; }
 .article .faq-item p { padding:0; max-width:none; }
@@ -198,8 +211,10 @@ def page(title, desc, canonical, extra_head, inner):
 </head>
 <body>
 {NAV_ABS}
+{MOBILE_ABS}
 {inner}
 {FOOTER_ABS}
+{MENU_JS}
 </body>
 </html>
 """
@@ -243,7 +258,7 @@ def build_article(p, meta):
     inner = f"""
 <article class="article">
   <div class="container"><div class="article-wrap">
-    <nav class="breadcrumb"><a href="/">Início</a> / <a href="/blog/">Blog</a> / {html.escape(title)}</nav>
+    <div class="breadcrumb"><a href="/">Início</a> / <a href="/blog/">Blog</a> / {html.escape(title)}</div>
     <span class="article-cat">{html.escape(meta["category"])}</span>
     <h1>{html.escape(title)}</h1>
     <div class="article-meta">{date_br} · {read} min de leitura</div>

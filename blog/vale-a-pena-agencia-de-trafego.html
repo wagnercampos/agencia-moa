@@ -788,6 +788,16 @@ footer { background: var(--dark); padding: 64px 0 32px; }
 .faq-item { border-top:1px solid #e6e5db; padding:22px 0; }
 .faq-item h3 { font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:8px; }
 .faq-item p { font-size:16px; line-height:1.65; color:#444; margin:0; }
+/* o casco da home traz o menu transparente e o cursor customizado, mas não o JS
+   que escurece o menu ao rolar nem o que desenha a bolinha: no blog o menu já nasce
+   escuro e o cursor volta a ser o do sistema */
+#navbar { padding: 16px 48px; background: rgba(27,27,27,0.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+@media (max-width: 900px) { #navbar { padding: 16px 24px; } }
+* { cursor: auto !important; }
+a, button, summary, [onclick] { cursor: pointer !important; }
+.cursor-dot, .cursor-ring { display: none !important; }
+.mobile-menu { z-index: 200; }  /* acima do menu escuro, senão o ✕ some */
 /* neutraliza o CSS do FAQ em sanfona da home, que vem junto no casco */
 .article .faq-item { border-bottom:none; }
 .article .faq-item p { padding:0; max-width:none; }
@@ -821,10 +831,19 @@ footer { background: var(--dark); padding: 64px 0 32px; }
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="/#manifesto" onclick="toggleMenu()">Quem Somos</a>
+  <a href="/#services" onclick="toggleMenu()">Serviços</a>
+  <a href="/#clients" onclick="toggleMenu()">Clientes</a>
+  <a href="/#team" onclick="toggleMenu()">Time</a>
+  <a href="/#labs" onclick="toggleMenu()">Labs</a>
+  <a href="https://wa.me/5588988575422" onclick="toggleMenu()">Contato</a>
+</div>
 
 <article class="article">
   <div class="container"><div class="article-wrap">
-    <nav class="breadcrumb"><a href="/">Início</a> / <a href="/blog/">Blog</a> / Vale a pena contratar agência de tráfego? Como decidir antes de gastar</nav>
+    <div class="breadcrumb"><a href="/">Início</a> / <a href="/blog/">Blog</a> / Vale a pena contratar agência de tráfego? Como decidir antes de gastar</div>
     <span class="article-cat">Tráfego Pago</span>
     <h1>Vale a pena contratar agência de tráfego? Como decidir antes de gastar</h1>
     <div class="article-meta">06/08/2026 · 6 min de leitura</div>
@@ -898,5 +917,6 @@ footer { background: var(--dark); padding: 64px 0 32px; }
     </div>
   </div>
 </footer>
+<script>function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}</script>
 </body>
 </html>
