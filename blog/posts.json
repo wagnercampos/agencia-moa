@@ -3,9 +3,10 @@
     {
       "slug": "negocio-nao-aparece-no-google-maps",
       "category": "Google Meu Negócio",
-      "description": "Seu negócio não aparece no Google Maps? Veja as 5 causas mais comuns e o passo a passo para resolver e ser encontrado por quem procura perto de você.",
+      "description": "Perfil não verificado, categoria errada, ficha pela metade: as 5 causas que escondem uma empresa no Google Maps e o passo a passo pra aparecer.",
       "date": "2026-08-04",
-      "read": 5
+      "read": 5,
+      "seo_title": "Negócio não aparece no Google Maps? 5 causas e como resolver"
     },
     {
       "slug": "quanto-custa-google-ads",
@@ -26,6 +27,14 @@
       "category": "Google Meu Negócio",
       "description": "Como otimizar o Google Meu Negócio (Perfil da Empresa) em 2026: passo a passo completo de verificação, categoria, fotos, avaliações e mais.",
       "date": "2026-08-07",
+      "read": 6
+    },
+    {
+      "slug": "quanto-custa-agencia-de-marketing-teresina",
+      "category": "Agência",
+      "seo_title": "Quanto custa uma agência de marketing em Teresina (2026)",
+      "description": "Preços reais de agência de marketing em Teresina em 2026: pacote completo, Google Ads, Google Meu Negócio e site, o que entra na mensalidade e como comparar propostas.",
+      "date": "2026-10-05",
       "read": 6
     }
   ]

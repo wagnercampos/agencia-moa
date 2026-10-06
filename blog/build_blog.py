@@ -90,6 +90,9 @@ BLOG_CSS = """
 .faq-item { border-top:1px solid #e6e5db; padding:22px 0; }
 .faq-item h3 { font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:8px; }
 .faq-item p { font-size:16px; line-height:1.65; color:#444; margin:0; }
+/* neutraliza o CSS do FAQ em sanfona da home, que vem junto no casco */
+.article .faq-item { border-bottom:none; }
+.article .faq-item p { padding:0; max-width:none; }
 .post-cta { background:var(--dark); color:var(--off-white); border-radius:20px; padding:44px 40px; margin:56px 0 20px; text-align:center; }
 .post-cta p { font-size:19px; line-height:1.6; margin-bottom:24px; }
 .post-cta a { display:inline-block; background:var(--teal); color:#08302f; font-weight:700; text-decoration:none; padding:15px 34px; border-radius:50px; font-size:16px; transition:transform .2s ease; }
@@ -254,7 +257,8 @@ def build_article(p, meta):
   </div></div>
 </article>
 """
-    return page(f"{title} | Blog Agência MOA", meta["description"], canonical, ld_html, inner)
+    # seo_title (opcional no posts.json) troca só o <title>/og:title; o H1 continua o título do .md
+    return page(meta.get("seo_title") or f"{title} | Blog Agência MOA", meta["description"], canonical, ld_html, inner)
 
 def build_index(items):
     canonical = f"{SITE}/blog/"
