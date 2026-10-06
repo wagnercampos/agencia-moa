@@ -14,14 +14,16 @@ Método de trabalho: cada projeto é pensado antes de executar e revisado antes 
 - Tipo: Agência de marketing digital e design
 - Cidade: Teresina, Piauí (PI), Brasil
 - Endereço: R. Crescêncio Ferreira, 1726 — Morada do Sol, Teresina-PI, CEP 64056-440
-- Empresas atendidas: mais de 80
-- Anos de experiência: mais de 6
+- Anos de estrada: mais de 6 (a agência passou pela fase Dojo Digital e atende como Agência MOA desde 2025)
+- Clientes ativos: mais de 30
+- Sites entregues: mais de 80
 - Produções audiovisuais realizadas: mais de 50
-- Serviços especializados: mais de 7
+- Responsável por sites e Google: Wagner Campos (https://wagner.agenciamoa.com.br/)
 - Área de atuação: Teresina e todo o Piauí; também atende clientes no restante do Brasil de forma remota
 - WhatsApp: +55 88 98857-5422
 - Instagram: https://www.instagram.com/agenciamoa.mkt/
 - Site: https://agenciamoa.com.br
+- Google Meu Negócio: https://g.page/r/CT25OWVGAkb4EBM/
 
 ## Serviços
 
@@ -40,7 +42,6 @@ MOA.labs é o braço de tecnologia da Agência MOA. Desenvolve produtos digitais
 ## Páginas
 
 - [Home](https://agenciamoa.com.br/): visão geral da agência, serviços, clientes e time.
-- [Agência de marketing em Teresina](https://agenciamoa.com.br/agencia-de-marketing-em-teresina.html): página com serviços, diferenciais e perguntas frequentes sobre contratar uma agência de marketing em Teresina.
 - [Marketing para médicos em Teresina](https://agenciamoa.com.br/marketing-para-medicos-em-teresina.html): marketing para consultórios e clínicas dentro das regras do CFM — Google Meu Negócio, tráfego pago e presença digital.
 - [Marketing para restaurantes em Teresina](https://agenciamoa.com.br/marketing-para-restaurantes-em-teresina.html): marketing para restaurantes, bares, cafés e cervejarias — Google Meu Negócio, fotografia gastronômica, redes sociais e tráfego local.
 - [Marketing para hotéis em Teresina](https://agenciamoa.com.br/marketing-para-hoteis-em-teresina.html): marketing para hotéis e pousadas — Google Meu Negócio, fotografia de hospedagem, reserva direta e menos dependência de OTAs.
